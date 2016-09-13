@@ -12,7 +12,7 @@
 		48477ECA7E33FE5049F20B2846244474 /* Pods-CCBluetooth_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D746FE5CB9A270879BFA4F189E781E9 /* Pods-CCBluetooth_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		590CFA1C02BF5430C7D0A7FBE935BE5A /* Pods-CCBluetooth_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF9F6EE5EC75870C876BD52BD3413D /* Pods-CCBluetooth_Tests-dummy.m */; };
 		6A678389D2E6AD2CC17825FFC430BE37 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		6C6C6A7700FBB3CB081103389F43A623 /* CBPeriperhal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321386BC6015D5D60D80795429DFCC5D /* CBPeriperhal+Extension.swift */; };
+		6C6C6A7700FBB3CB081103389F43A623 /* CBPeripheral+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321386BC6015D5D60D80795429DFCC5D /* CBPeripheral+Extension.swift */; };
 		758A36CF454068B230C7311AE6FE41F4 /* Pods-CCBluetooth_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A03C66159CAD37FE34B65BE0CD75C /* Pods-CCBluetooth_Example-dummy.m */; };
 		8E4490687E08CFF42932869224B9065A /* CCBluetooth-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 237AC750D5AF6E86D8B7CF9E7989A98E /* CCBluetooth-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9CBC5F3B46887FDC1F48C54194650357 /* CCBluetooth-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F56E46FFCD9019E38D41FC6ECCC5A3 /* CCBluetooth-dummy.m */; };
@@ -54,7 +54,7 @@
 		237AC750D5AF6E86D8B7CF9E7989A98E /* CCBluetooth-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CCBluetooth-umbrella.h"; sourceTree = "<group>"; };
 		2E99F9BEACEB25BC40139DE4CBF39960 /* Pods-CCBluetooth_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CCBluetooth_Tests-resources.sh"; sourceTree = "<group>"; };
 		317DD0BB99F0337ABCFC6E1EEE914F94 /* CCToolbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CCToolbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		321386BC6015D5D60D80795429DFCC5D /* CBPeriperhal+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CBPeriperhal+Extension.swift"; sourceTree = "<group>"; };
+		321386BC6015D5D60D80795429DFCC5D /* CBPeripheral+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CBPeripheral+Extension.swift"; sourceTree = "<group>"; };
 		342DB1F13F922F8D0CED029A8AA13BCA /* CCToolbox-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CCToolbox-umbrella.h"; sourceTree = "<group>"; };
 		3F3DE5AE6323C410C2473A9B96F59D97 /* NSString+Conversion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSString+Conversion.swift"; path = "CCToolbox/Classes/NSString+Conversion.swift"; sourceTree = "<group>"; };
 		4408F656E8BC44AD751A5F603D1090BF /* Pods_CCBluetooth_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCBluetooth_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,7 +255,7 @@
 			children = (
 				221876725CF175C597B5A33F96574188 /* Bluetooth.swift */,
 				81D63E214014C47213650965C52B79ED /* BluetoothCommonServices.swift */,
-				321386BC6015D5D60D80795429DFCC5D /* CBPeriperhal+Extension.swift */,
+				321386BC6015D5D60D80795429DFCC5D /* CBPeripheral+Extension.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -462,7 +462,7 @@
 			files = (
 				BDCA205965155B2AC5D40B3969728784 /* Bluetooth.swift in Sources */,
 				C1E8B993B2113B195612899BC0B11C2C /* BluetoothCommonServices.swift in Sources */,
-				6C6C6A7700FBB3CB081103389F43A623 /* CBPeriperhal+Extension.swift in Sources */,
+				6C6C6A7700FBB3CB081103389F43A623 /* CBPeripheral+Extension.swift in Sources */,
 				9CBC5F3B46887FDC1F48C54194650357 /* CCBluetooth-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
