@@ -198,13 +198,7 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     public func centralManager(_ central: CBCentralManager, didDiscover cbPeripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber){
         print("Central#didDiscoverPeripheral \(cbPeripheral.name)")
         print("RSSI: \(RSSI)")
-        if ((self.bluetoothPeripheralDelegate.didDiscoverPeripheral(cbPeripheral)) != nil) {
-            bluetoothPeripheralDelegate.didDiscoverPeripheral(cbPeripheral)
-        }
-
-        //if ((self.bluetoothDelegate.didDiscoverPeripheral!(cbPeripheral)) != nil) {
-        //    bluetoothDelegate.didDiscoverPeripheral!(cbPeripheral)
-        //}
+        bluetoothPeripheralDelegate.didDiscoverPeripheral(cbPeripheral)
     }
     
     public func centralManagerDidUpdateState(_ central:CBCentralManager) {
@@ -236,12 +230,8 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         self.connectedPeripheral = peripheral
         
         if(self.bluetoothDelegate != nil) {
-            if ((self.bluetoothPeripheralDelegate.didConnectPeripheral(peripheral)) != nil) {
-                self.bluetoothPeripheralDelegate.didConnectPeripheral(peripheral)
-            }
+            self.bluetoothPeripheralDelegate.didConnectPeripheral(peripheral)
         }
-        
-        //self.discoverAllServices(peripheral)
     }
     
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
