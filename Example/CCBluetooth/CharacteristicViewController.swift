@@ -165,7 +165,6 @@ class CharacteristicViewController: UITableViewController, BluetoothCharacterist
     }
     
     // MARK
-    //@objc(didUpdateNotificationStateFor:) func didUpdateNotificationStateFor(_ characteristic:CBCharacteristic) {
     func didUpdateNotificationStateFor(_ characteristic:CBCharacteristic) {
         print("CharacteristicViewController#didUpdateNotificationStateFor: \(characteristic)")
         if(characteristic.isNotifying) {
@@ -176,11 +175,9 @@ class CharacteristicViewController: UITableViewController, BluetoothCharacterist
         self.refreshPeripherals()
     }
     
-    //@objc(didUpdateValueForCharacteristic:descriptor:error:) func didUpdateValueForCharacteristic(_ cbPeripheral: CBPeripheral, descriptor: CBDescriptor, error:NSError) {
-    func didUpdateValueForCharacteristic(_ cbPeripheral: CBPeripheral, descriptor:CBDescriptor, error:NSError) {
+    public func didUpdateValueForCharacteristic(_ cbPeripheral: CBPeripheral, characteristic:CBCharacteristic) {
         print("CharacteristicViewController#didUpdateValueForCharacteristic")
-        let data = descriptor.characteristic.value
-        //let data = characteristic.value
+        let data = characteristic.value
         print(data)
         
         self.readValues.append(characteristic.value!)
@@ -191,7 +188,7 @@ class CharacteristicViewController: UITableViewController, BluetoothCharacterist
         print("error: \(error)")
     }
     
-    func didWriteValueForCharacteristic(_ cbPeripheral: CBPeripheral, didWriteValueFor descriptor:CBDescriptor, error: NSError?) {
+    func didWriteValueForCharacteristic(_ cbPeripheral: CBPeripheral, didWriteValueFor descriptor:CBDescriptor) {
         
     }
 }

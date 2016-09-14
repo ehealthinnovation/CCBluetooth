@@ -31,8 +31,8 @@ public protocol BluetoothServiceProtocol {
 
 public protocol BluetoothCharacteristicProtocol {
     func didUpdateNotificationStateFor(_ characteristic:CBCharacteristic)
-    func didUpdateValueForCharacteristic(_ cbPeripheral: CBPeripheral, descriptor:CBDescriptor, error:NSError)
-    func didWriteValueForCharacteristic(_ cbPeripheral: CBPeripheral, didWriteValueFor descriptor:CBDescriptor, error: NSError?)
+    func didUpdateValueForCharacteristic(_ cbPeripheral: CBPeripheral, characteristic:CBCharacteristic)
+    func didWriteValueForCharacteristic(_ cbPeripheral: CBPeripheral, didWriteValueFor descriptor:CBDescriptor)
 }
 
 public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -169,25 +169,25 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         }
     }
     
-    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor descriptor: CBDescriptor, error: Error?) {
+    public func peripheral(_ peripheral: CBPeripheral,
+                             didUpdateValueFor characteristic: CBCharacteristic,
+                             error: Error?) {
         print("Peripheral#didUpdateValueForCharacteristic")
         
         if (error == nil) {
-            if ((self.bluetoothCharacteristicDelegate?.didUpdateValueForCharacteristic(peripheral, descriptor: descriptor, error: error! as NSError)) != nil) {
-            bluetoothCharacteristicDelegate.didUpdateValueForCharacteristic(peripheral, descriptor: descriptor, error: error! as NSError)
-            }
+            bluetoothCharacteristicDelegate.didUpdateValueForCharacteristic(peripheral, characteristic: characteristic)
         } else {
             self.bluetoothDelegate.bluetoothError(error)
         }
     }
     
-    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor descriptor: CBDescriptor, error: Error?) {
+    public func peripheral(_ peripheral: CBPeripheral,
+                           didWriteValueFor descriptor: CBDescriptor,
+                           error: Error?) {
         print("Peripheral#didWriteValueFor")
         
         if (error == nil) {
-            if ((self.bluetoothCharacteristicDelegate?.didWriteValueForCharacteristic(peripheral, didWriteValueFor: descriptor, error: error as NSError?)) != nil) {
-            bluetoothCharacteristicDelegate.didWriteValueForCharacteristic(peripheral, didWriteValueFor: descriptor, error: error as NSError?)
-            }
+            bluetoothCharacteristicDelegate.didWriteValueForCharacteristic(peripheral, didWriteValueFor: descriptor)
         } else {
             self.bluetoothDelegate.bluetoothError(error)
         }
