@@ -144,13 +144,9 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
                         self.connectedPeripheral.setNotifyValue(true, for: characteristic)
                     }
                 }
-                if ((self.bluetoothServiceDelegate?.didDiscoverServiceWithCharacteristics(service)) != nil) {
-                    bluetoothServiceDelegate.didDiscoverServiceWithCharacteristics(service)
-                }
+                bluetoothServiceDelegate.didDiscoverServiceWithCharacteristics(service)
             } else {
-                if ((self.bluetoothServiceDelegate?.didDiscoverServiceWithCharacteristics(service)) != nil) {
-                    bluetoothServiceDelegate.didDiscoverServiceWithCharacteristics(service)
-                }
+                bluetoothServiceDelegate.didDiscoverServiceWithCharacteristics(service)
             }
         } else {
             self.bluetoothDelegate.bluetoothError(error)
@@ -161,9 +157,7 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         print("Peripheral#didUpdateNotificationStateForCharacteristic error: \(error)")
         
         if (error == nil) {
-            if ((self.bluetoothCharacteristicDelegate?.didUpdateNotificationStateFor(characteristic)) != nil) {
-                bluetoothCharacteristicDelegate.didUpdateNotificationStateFor(characteristic)
-            }
+            bluetoothCharacteristicDelegate.didUpdateNotificationStateFor(characteristic)
         } else {
             self.bluetoothDelegate.bluetoothError(error)
         }
@@ -229,9 +223,7 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         print("CentralManager#didConnect")
         self.connectedPeripheral = peripheral
         
-        if(self.bluetoothDelegate != nil) {
-            self.bluetoothPeripheralDelegate.didConnectPeripheral(peripheral)
-        }
+        self.bluetoothPeripheralDelegate.didConnectPeripheral(peripheral)
     }
     
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
