@@ -25,7 +25,7 @@ public protocol BluetoothPeripheralProtocol {
 }
 
 public protocol BluetoothServiceProtocol {
-    func didDiscoverService(_ service:CBService)
+    func didDiscoverServices(_ services:[CBService])
     func didDiscoverServiceWithCharacteristics(_ service:CBService)
 }
 
@@ -127,6 +127,7 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     //MARK CBPeripheral delegate methods
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         print("Central#didDiscoverServices")
+        self.bluetoothServiceDelegate.didDiscoverServices(peripheral.services!)
         
         if (error == nil) {
             for service:CBService in peripheral.services as [CBService]! {

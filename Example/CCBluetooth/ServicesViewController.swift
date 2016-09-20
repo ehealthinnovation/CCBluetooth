@@ -105,8 +105,8 @@ class ServicesViewController: UITableViewController, BluetoothServiceProtocol {
     }
     
     // MARK peripheralDelegate methods
-    func didDiscoverService(_ service:CBService) {
-        print("ServicesViewController#didDiscoverService - \(service)")
+    public func didDiscoverServices(_ services: [CBService]) {
+        print("ServicesViewController#didDiscoverServices - \(services)")
     }
     
     //@objc(didDiscoverServiceWithCharacteristics:) func didDiscoverServiceWithCharacteristics(_ service:CBService) {
