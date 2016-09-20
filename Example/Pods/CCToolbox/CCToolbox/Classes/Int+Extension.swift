@@ -47,4 +47,15 @@ extension Int {
             return Int(bitPattern: UInt( (self.toU32 & (0x1 << bit.toU32)) >> bit.toU32 ))
         }
     }
+    
+    public func toBool () -> Bool? {
+        switch self {
+        case 0:
+            return false
+        case 1:
+            return true
+        default:
+            return nil
+        }
+    }
 }

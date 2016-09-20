@@ -1,6 +1,6 @@
 PODS:
-  - CCBluetooth (0.1.0)
-  - CCToolbox (0.2.0)
+  - CCBluetooth (0.5.0)
+  - CCToolbox (0.7.0)
 
 DEPENDENCIES:
   - CCBluetooth (from `../`)
@@ -11,9 +11,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CCBluetooth: 426763849f53ae9baf1ad29e9dc4131f97088f9f
-  CCToolbox: b2866055e230172d204b178e863ae1f7cdcb5e44
+  CCBluetooth: b8e2d1669143ab66b8a85ebfbbd84c4f7a7beb1a
+  CCToolbox: 0132b54e5830d2ef922ccba91dbb386fe7f8d3bd
 
 PODFILE CHECKSUM: 071ed6b5f1fd99dd4306d40bdeb04382f5c9ec44
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

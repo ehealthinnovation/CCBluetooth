@@ -92,6 +92,16 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             CBConnectPeripheralOptionNotifyOnNotificationKey : true])
     }
     
+    public func reconnectPeripheral(_ uuidString:String) {
+        print("CentralManager#reconnectPeripheral")
+        var reconnectUUID: UUID = UUID(uuidString: uuidString)!
+        let retrievedPeripherals = (self.cbCentralManager?.retrievePeripherals(withIdentifiers: [reconnectUUID]))! as [CBPeripheral]
+        
+        if retrievedPeripherals.count > 0 {
+            self.connectPeripheral(retrievedPeripherals[0])
+        }
+    }
+    
     public func disconnectPeripheral(_ peripheral:CBPeripheral) {
         self.cbCentralManager?.cancelPeripheralConnection(peripheral)
     }
@@ -222,6 +232,7 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     public func centralManager(_:CBCentralManager, didConnect peripheral:CBPeripheral) {
         print("CentralManager#didConnect")
         self.connectedPeripheral = peripheral
+        print("connected peripheral UUID: \(peripheral.identifier.uuidString)")
         
         self.bluetoothPeripheralDelegate.didConnectPeripheral(peripheral)
     }
