@@ -71,6 +71,10 @@ class PeripheralSelectionViewController: UITableViewController, BluetoothProtoco
         self.performSegue(withIdentifier: "segueToServices", sender: self)
     }
     
+    public func didDisconnectPeripheral(_ cbPeripheral: CBPeripheral) {
+        print("PeripheralSelectionViewController#didDisconnectPeripheral \(cbPeripheral)")
+    }
+    
     func didDiscoverPeripheral(_ cbPeripheral:CBPeripheral) {
         print("PeripheralSelectionViewController#didDiscoverPeripheral")
         discoveredPeripherals.append(cbPeripheral)

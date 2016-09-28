@@ -22,6 +22,7 @@ public protocol BluetoothPeripheralProtocol {
     var autoEnableNotifications:Bool {get}
     func didDiscoverPeripheral(_ cbPeripheral:CBPeripheral)
     func didConnectPeripheral(_ cbPeripheral:CBPeripheral)
+    func didDisconnectPeripheral(_ cbPeripheral:CBPeripheral)
 }
 
 public protocol BluetoothServiceProtocol {
@@ -242,7 +243,7 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         print("Central#didDisconnectPeripheral")
         
         if (error == nil) {
-            
+            self.bluetoothPeripheralDelegate.didDisconnectPeripheral(peripheral)
         } else {
             self.bluetoothDelegate.bluetoothError(error)
         }
