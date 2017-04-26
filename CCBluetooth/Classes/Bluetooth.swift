@@ -95,7 +95,7 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     
     public func reconnectPeripheral(_ uuidString:String) {
         print("CentralManager#reconnectPeripheral")
-        var reconnectUUID: UUID = UUID(uuidString: uuidString)!
+        let reconnectUUID: UUID = UUID(uuidString: uuidString)!
         let retrievedPeripherals = (self.cbCentralManager?.retrievePeripherals(withIdentifiers: [reconnectUUID]))! as [CBPeripheral]
         
         if retrievedPeripherals.count > 0 {
@@ -166,7 +166,7 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
-        print("Peripheral#didUpdateNotificationStateForCharacteristic error: \(error)")
+        print("Peripheral#didUpdateNotificationStateForCharacteristic error: \(String(describing: error))")
         
         if (error == nil) {
             bluetoothCharacteristicDelegate.didUpdateNotificationStateFor(characteristic)
@@ -202,7 +202,7 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     
     // MARK CBCentralManager delegate methods
     public func centralManager(_ central: CBCentralManager, didDiscover cbPeripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber){
-        print("Central#didDiscoverPeripheral \(cbPeripheral.name)")
+        print("Central#didDiscoverPeripheral \(String(describing: cbPeripheral.name))")
         print("RSSI: \(RSSI)")
         bluetoothPeripheralDelegate.didDiscoverPeripheral(cbPeripheral)
     }

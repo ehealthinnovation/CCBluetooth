@@ -178,14 +178,14 @@ class CharacteristicViewController: UITableViewController, BluetoothCharacterist
     public func didUpdateValueForCharacteristic(_ cbPeripheral: CBPeripheral, characteristic:CBCharacteristic) {
         print("CharacteristicViewController#didUpdateValueForCharacteristic")
         let data = characteristic.value
-        print(data)
+        print(data!)
         
         self.readValues.append(characteristic.value!)
         self.refreshPeripherals()
     }
     
     func bluetoothError(_ error:Error?) {
-        print("error: \(error)")
+        print("error: \(String(describing: error))")
     }
     
     func didWriteValueForCharacteristic(_ cbPeripheral: CBPeripheral, didWriteValueFor descriptor:CBDescriptor) {

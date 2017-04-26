@@ -124,6 +124,6 @@ class ServicesViewController: UITableViewController, BluetoothServiceProtocol {
     }
     
     func bluetoothError(_ error:Error?) {
-        print("error: \(error)")
+        print("error: \(String(describing: error))")
     }
 }

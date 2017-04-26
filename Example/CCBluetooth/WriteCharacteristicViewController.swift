@@ -44,6 +44,6 @@ class WriteCharacteristicViewController: UIViewController, UITextFieldDelegate {
     }
     
     func didWriteValueForCharacteristic(_ cbPeripheral: CBPeripheral, didWriteValueFor descriptor:CBDescriptor, error: NSError?) {
-        print("didWriteValueForCharacteristic \(descriptor.characteristic.value)")
+        print("didWriteValueForCharacteristic \(String(describing: descriptor.characteristic.value))")
     }
 }

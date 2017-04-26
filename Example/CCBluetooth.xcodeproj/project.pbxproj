@@ -228,12 +228,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = F663BTMH9Q;
+						DevelopmentTeam = DZ4F62W4RY;
 						LastSwiftMigration = 0800;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = F663BTMH9Q;
+						DevelopmentTeam = DZ4F62W4RY;
 						LastSwiftMigration = 0800;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -517,7 +517,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = F663BTMH9Q;
+				DEVELOPMENT_TEAM = DZ4F62W4RY;
 				INFOPLIST_FILE = CCBluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -534,7 +534,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = F663BTMH9Q;
+				DEVELOPMENT_TEAM = DZ4F62W4RY;
 				INFOPLIST_FILE = CCBluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -549,7 +549,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B4DDBFE9312D49E988E3D650 /* Pods-CCBluetooth_Tests.debug.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = F663BTMH9Q;
+				DEVELOPMENT_TEAM = DZ4F62W4RY;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -567,7 +567,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9577711ABC287EF4EE811493 /* Pods-CCBluetooth_Tests.release.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = F663BTMH9Q;
+				DEVELOPMENT_TEAM = DZ4F62W4RY;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
