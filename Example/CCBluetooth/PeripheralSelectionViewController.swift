@@ -12,7 +12,7 @@ import CoreBluetooth
 
 class PeripheralSelectionViewController: UITableViewController, BluetoothProtocol, BluetoothPeripheralProtocol {
     let cellIdentifier = "PeripheralCellIdentifier"
-    var serviceUUIDString:String = "1808"
+    var serviceUUIDString:String = "181F"  //1808
     var autoEnableNotifications:Bool = false
     var discoveredPeripherals: Array<CBPeripheral> = Array<CBPeripheral>()
     var previouslyConnectedPeripherals: Array<CBPeripheral> = Array<CBPeripheral>()
@@ -62,7 +62,7 @@ class PeripheralSelectionViewController: UITableViewController, BluetoothProtoco
     
     func didConnectPeripheral(_ cbPeripheral:CBPeripheral) {
         print("PeripheralSelectionViewController#didConnectPeripheral \(cbPeripheral)")
-        print("PeripheralSelectionViewController#didConnectPeripheral \(cbPeripheral.name)")
+        print("PeripheralSelectionViewController#didConnectPeripheral \(String(describing: cbPeripheral.name))")
         
         self.peripheral = cbPeripheral
         self.addPreviouslyConnectedPeripheral(cbPeripheral)
@@ -78,7 +78,7 @@ class PeripheralSelectionViewController: UITableViewController, BluetoothProtoco
     func didDiscoverPeripheral(_ cbPeripheral:CBPeripheral) {
         print("PeripheralSelectionViewController#didDiscoverPeripheral")
         discoveredPeripherals.append(cbPeripheral)
-        print("device name: \(cbPeripheral.name)")
+        print("device name: \(String(describing: cbPeripheral.name))")
         print("peripherals: \(self.discoveredPeripherals)")
         
         self.refreshPeripherals()
@@ -149,12 +149,12 @@ class PeripheralSelectionViewController: UITableViewController, BluetoothProtoco
     }
     
     func didSelectDiscoveredPeripheral(_ peripheral:CBPeripheral) {
-        print("ViewController#didSelectDiscoveredPeripheral \(peripheral.name)")
+        print("ViewController#didSelectDiscoveredPeripheral \(String(describing: peripheral.name))")
         Bluetooth.sharedInstance().connectPeripheral(peripheral)
     }
     
     func didSelectPreviouslyConnectedPeripheral(_ peripheral:CBPeripheral) {
-        print("ViewController#didSelectPreviouslyConnectedPeripheral \(peripheral.name)")
+        print("ViewController#didSelectPreviouslyConnectedPeripheral \(String(describing: peripheral.name))")
         Bluetooth.sharedInstance().reconnectPeripheral(peripheral.identifier.uuidString)
     }
     
@@ -165,7 +165,7 @@ class PeripheralSelectionViewController: UITableViewController, BluetoothProtoco
     }
     
     func bluetoothError(_ error:Error?) {
-        print("error: \(error)")
+        print("error: \(String(describing: error))")
     }
 }
 
