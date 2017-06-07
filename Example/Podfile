@@ -4,11 +4,9 @@ use_frameworks!
 
 target 'CCBluetooth_Example' do
   pod 'CCBluetooth', :path => '../'
-  pod 'CCToolbox'
+  pod 'CCToolbox', :git => 'https://github.com/uhnmdi/CCToolbox.git'
 
   target 'CCBluetooth_Tests' do
     inherit! :search_paths
-
-    
   end
 end

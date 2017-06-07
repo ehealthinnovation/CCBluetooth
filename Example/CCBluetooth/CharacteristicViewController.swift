@@ -9,7 +9,6 @@
 import UIKit
 import CCBluetooth
 import CoreBluetooth
-import CCToolbox
 
 class CharacteristicViewController: UITableViewController, BluetoothCharacteristicProtocol {
     var peripheral:CBPeripheral!
