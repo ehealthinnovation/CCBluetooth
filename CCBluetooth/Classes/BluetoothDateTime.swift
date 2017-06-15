@@ -55,7 +55,7 @@ public class BluetoothDateTime : NSObject {
         return dstOffsetValue
     }
 
-    public func dateFromData(data: NSData) -> String {
+    public func dateFromData(data: NSData) -> Date {
         var dateComponents = DateComponents()
         
         let year = (data.subdata(with: yearRange) as NSData)
@@ -77,7 +77,6 @@ public class BluetoothDateTime : NSObject {
         let seconds = (data.subdata(with: secondsRange) as NSData)
         dateComponents.second = Int(strtoul(seconds.toHexString(), nil, 16))
         
-        let measurementDate = NSCalendar.current.date(from: dateComponents as DateComponents)
         let timeZoneData: NSData = (data.subdata(with: timeZoneByteRange) as NSData)
         var timeZoneInt: NSInteger = 0
         timeZoneData.getBytes(&timeZoneInt, length: 1)
@@ -101,12 +100,16 @@ public class BluetoothDateTime : NSObject {
         
         dateComponents.second = dateComponents.second! - Int(dstOffsetInSeconds)
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZ"
-        dateFormatter.timeZone = tz
+        let measurementDate = NSCalendar.current.date(from: dateComponents as DateComponents)
         
-        let str = dateFormatter.string(from: measurementDate!)
-        return str
+        return measurementDate!
     }
 
+    public func stringFromDate(date:Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZ"
+        
+        let str = dateFormatter.string(from: date)
+        return str
+    }
 }
