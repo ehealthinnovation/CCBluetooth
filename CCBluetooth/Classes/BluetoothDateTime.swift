@@ -77,28 +77,33 @@ public class BluetoothDateTime : NSObject {
         let seconds = (data.subdata(with: secondsRange) as NSData)
         dateComponents.second = Int(strtoul(seconds.toHexString(), nil, 16))
         
-        let timeZoneData: NSData = (data.subdata(with: timeZoneByteRange) as NSData)
-        var timeZoneInt: NSInteger = 0
-        timeZoneData.getBytes(&timeZoneInt, length: 1)
-        timeZoneInt = (((timeZoneInt - 256) / timeZoneStepSizeMin60) * secondsInHour)
-        let tz: TimeZone = NSTimeZone(forSecondsFromGMT: timeZoneInt) as TimeZone
+        // assume the date includes time zone and dst offset bytes
+        if(data.length > 7) {
+            let timeZoneData: NSData = (data.subdata(with: timeZoneByteRange) as NSData)
+            var timeZoneInt: NSInteger = 0
+            timeZoneData.getBytes(&timeZoneInt, length: 1)
+            if timeZoneInt != 0 {
+                timeZoneInt = (((timeZoneInt - 256) / timeZoneStepSizeMin60) * secondsInHour)
+            }
+            let tz: TimeZone = NSTimeZone(forSecondsFromGMT: timeZoneInt) as TimeZone
         
-        var dstOffsetInSeconds: TimeInterval!
-        let dstOffsetCode = (data.subdata(with: dstOffsetByteRange) as NSData!)
-        var dstOffset: NSInteger = 0
-        dstOffsetCode?.getBytes(&dstOffset, length: 1)
+            var dstOffsetInSeconds: TimeInterval!
+            let dstOffsetCode = (data.subdata(with: dstOffsetByteRange) as NSData!)
+            var dstOffset: NSInteger = 0
+            dstOffsetCode?.getBytes(&dstOffset, length: 1)
         
-        if ((dstOffset == dst.DSTStandardTime.rawValue) && (tz.daylightSavingTimeOffset() == 0)) {
-            dstOffsetInSeconds = tz.daylightSavingTimeOffset()
-        } else if ((dstOffset == dst.DSTPlusHourHalf.rawValue) && (Int(tz.daylightSavingTimeOffset()) != (secondsInHour / 2))) {
-            dstOffsetInSeconds = TimeInterval(Int(tz.daylightSavingTimeOffset()) - (secondsInHour / 2))
-        } else if ((dstOffset == dst.DSTPlusHourOne.rawValue) && (Int(tz.daylightSavingTimeOffset()) != secondsInHour)) {
-            dstOffsetInSeconds = TimeInterval(Int(tz.daylightSavingTimeOffset()) - secondsInHour);
-        } else if ((dstOffset == dst.DSTPlusHoursTwo.rawValue) && (Int(tz.daylightSavingTimeOffset()) != (secondsInHour * 2))) {
-            dstOffsetInSeconds = TimeInterval(Int(tz.daylightSavingTimeOffset()) - (secondsInHour * 2));
+            if ((dstOffset == dst.DSTStandardTime.rawValue) && (tz.daylightSavingTimeOffset() == 0)) {
+                dstOffsetInSeconds = tz.daylightSavingTimeOffset()
+            } else if ((dstOffset == dst.DSTPlusHourHalf.rawValue) && (Int(tz.daylightSavingTimeOffset()) != (secondsInHour / 2))) {
+                dstOffsetInSeconds = TimeInterval(Int(tz.daylightSavingTimeOffset()) - (secondsInHour / 2))
+            } else if ((dstOffset == dst.DSTPlusHourOne.rawValue) && (Int(tz.daylightSavingTimeOffset()) != secondsInHour)) {
+                dstOffsetInSeconds = TimeInterval(Int(tz.daylightSavingTimeOffset()) - secondsInHour);
+            } else if ((dstOffset == dst.DSTPlusHoursTwo.rawValue) && (Int(tz.daylightSavingTimeOffset()) != (secondsInHour * 2))) {
+                dstOffsetInSeconds = TimeInterval(Int(tz.daylightSavingTimeOffset()) - (secondsInHour * 2));
+            }
+        
+            dateComponents.second = dateComponents.second! - Int(dstOffsetInSeconds)
         }
-        
-        dateComponents.second = dateComponents.second! - Int(dstOffsetInSeconds)
         
         let measurementDate = NSCalendar.current.date(from: dateComponents as DateComponents)
         
