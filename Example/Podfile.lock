@@ -1,7 +1,7 @@
 PODS:
   - CCBluetooth (0.5.8):
     - CCToolbox
-  - CCToolbox (0.7.6)
+  - CCToolbox (0.7.7)
 
 DEPENDENCIES:
   - CCBluetooth (from `../`)
@@ -15,12 +15,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CCToolbox:
-    :commit: c4089311f7b91932cbd2bcfd42379c3e6b117f26
+    :commit: 458406373482115fb72b7d66c3b9c4d459975fb3
     :git: https://github.com/uhnmdi/CCToolbox.git
 
 SPEC CHECKSUMS:
   CCBluetooth: cc605544b86213b99de03976dc57dae8a7660e4e
-  CCToolbox: d1e11716709b31cf03514598e76cacef11d93cb6
+  CCToolbox: 8ee2a5a2eca000dad38a49fc30e767a9e8198e4d
 
 PODFILE CHECKSUM: bb89634e39327cf556ec6c616e362119dc18a064
 
