@@ -38,7 +38,7 @@ class PeripheralSelectionViewController: UITableViewController, BluetoothProtoco
         super.didReceiveMemoryWarning()
     }
 
-    func onRefresh() {
+    @objc func onRefresh() {
         Bluetooth.sharedInstance().stopScanning()
         Bluetooth.sharedInstance().startScanning(false)
         
