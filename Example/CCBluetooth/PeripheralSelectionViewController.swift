@@ -12,7 +12,7 @@ import CoreBluetooth
 
 class PeripheralSelectionViewController: UITableViewController, BluetoothProtocol, BluetoothPeripheralProtocol {
     let cellIdentifier = "PeripheralCellIdentifier"
-    var serviceUUIDString:String = "181F"  //1808
+    var serviceUUIDString:String = "181F"
     var autoEnableNotifications:Bool = false
     var discoveredPeripherals: Array<CBPeripheral> = Array<CBPeripheral>()
     var previouslyConnectedPeripherals: Array<CBPeripheral> = Array<CBPeripheral>()
@@ -38,7 +38,7 @@ class PeripheralSelectionViewController: UITableViewController, BluetoothProtoco
         super.didReceiveMemoryWarning()
     }
 
-    func onRefresh() {
+    @objc func onRefresh() {
         Bluetooth.sharedInstance().stopScanning()
         Bluetooth.sharedInstance().startScanning(false)
         
