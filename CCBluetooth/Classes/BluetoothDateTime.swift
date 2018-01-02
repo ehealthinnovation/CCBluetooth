@@ -54,7 +54,54 @@ public class BluetoothDateTime : NSObject {
         
         return dstOffsetValue
     }
-
+    
+    /*
+     [Bluetooth spec]
+     Key    Value
+     1    Monday
+     2    Tuesday
+     3    Wednesday
+     4    Thursday
+     5    Friday
+     6    Saturday
+     7    Sunday
+     
+     [iOS spec]
+     Weekday units are the numbers 1 through n, where n is the number of days in the week.
+     For example, in the Gregorian calendar, n is 7 and Sunday is represented by 1.
+    */
+    
+    // intended to generate nsdata from the current date/time, for transmission to the "current time" characteristic
+    public func currentTimeToData() -> NSData {
+        let date = Date()
+        
+        let cal = Calendar(identifier: .gregorian)
+        let comp = cal.dateComponents([.day,.month,.year,.hour,.minute,.second,.weekday], from: date)
+        let year = comp.year!
+        let yearLo = UInt8(year & 0xFF)
+        let yearHi = UInt8(year >> 8)
+        let data = [UInt8]([
+            yearLo
+            , yearHi
+            , UInt8(comp.month!)
+            , UInt8(comp.day!)
+            , UInt8(comp.hour!)
+            , UInt8(comp.minute!)
+            , UInt8(comp.second!)
+            , UInt8(comp.weekday! - 1)
+            ])
+        return Data(bytes: data) as NSData
+    }
+    
+    public func exactTime256ToData() -> NSData {
+        let data = NSMutableData()
+        var fractions256: UInt8 = 0xFF
+        data.append(currentTimeToData() as Data)
+        data.append(&fractions256, length: 1)
+        
+        return data
+    }
+    
     public func dateFromData(data: NSData) -> Date {
         var dateComponents = DateComponents()
         
