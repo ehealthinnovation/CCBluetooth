@@ -18,7 +18,6 @@ public protocol BluetoothProtocol {
 }
 
 public protocol BluetoothPeripheralProtocol {
-    var serviceUUIDString:String {get}
     var autoEnableNotifications:Bool {get}
     func didDiscoverPeripheral(_ cbPeripheral:CBPeripheral)
     func didConnectPeripheral(_ cbPeripheral:CBPeripheral)
@@ -43,8 +42,6 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     public var bluetoothCharacteristicDelegate : BluetoothCharacteristicProtocol!
     
     public var autoEnableNotifications:Bool = false
-    
-    public var serviceUUIDString:String = ""
     public var allowDuplicates:Bool = false
     
     private var cbCentralManager : CBCentralManager?
@@ -65,8 +62,16 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     }
     
     public func startScanning(_ allowDuplicatesKey:Bool) {
-        print("Bluetooth#startScanning")
-        self.startScanningForServiceUUIDs([CBUUID(string: bluetoothPeripheralDelegate.serviceUUIDString)], allowDuplicatesKey: allowDuplicatesKey)
+        if (!self.isScanning) {
+            print("Bluetooth#startScanning")
+            self.isScanning = true
+            self.cbCentralManager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: allowDuplicatesKey])
+        }
+    }
+    
+    public func startScanning(_ allowDuplicatesKey:Bool, serviceUUIDString: String) {
+        print("Bluetooth#startScanning (with service UUID string")
+        self.startScanningForServiceUUIDs([CBUUID(string: serviceUUIDString)], allowDuplicatesKey: allowDuplicatesKey)
     }
     
     public func startScanningForServiceUUIDs(_ uuids:[CBUUID]!, allowDuplicatesKey:Bool) {
@@ -131,7 +136,7 @@ public class Bluetooth : NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         self.bluetoothServiceDelegate.didDiscoverServices(peripheral.services!)
         
         if (error == nil) {
-            for service:CBService in peripheral.services as [CBService]! {
+            for service:CBService in (peripheral.services as [CBService]?)! {
                 print("Central#discoverCharacteristics")
                 peripheral.discoverCharacteristics(nil, for: service)
             }

@@ -12,7 +12,6 @@ import CoreBluetooth
 
 class PeripheralSelectionViewController: UITableViewController, BluetoothProtocol, BluetoothPeripheralProtocol {
     let cellIdentifier = "PeripheralCellIdentifier"
-    var serviceUUIDString:String = "181F"
     var autoEnableNotifications:Bool = false
     var discoveredPeripherals: Array<CBPeripheral> = Array<CBPeripheral>()
     var previouslyConnectedPeripherals: Array<CBPeripheral> = Array<CBPeripheral>()
